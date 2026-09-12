@@ -908,6 +908,8 @@ function STATUS_HTML(){ return [
 '<li><strong>예전 값은 원작 자료와 맞지 않았다</strong> — 관련 기본 능력치 합을 5.9 로 나누던 계산은 커뮤니티 실측을 옮긴 추정값이었다. 만렙 맨몸 20.3 이면 제작 숙련 보상 사다리의 첫 칸 75 조차 열리지 않고, 요구치 120인 설계도 여덟 종이 <strong>성공률 0% · 재료 손실 100%</strong> 였다. 지금은 만렙 맨몸 60, 기술·칭호까지 챙기면 99 다 — 요구치 105인 사다리 보상 제작법의 성공률이 <strong>28% → 80%</strong>(기술·칭호 포함 시 사실상 100%)로 올라간다</li>',
 '<li>성공률 수식 <code>1 - (max(0, 요구치 - 능력치) / 100)^2</code>, 재료 손실 <code>max(0, 요구치 - 능력치) / 100</code>, 대성공 확률의 하한·상한(0.1~0.3)은 <strong>손대지 않았다</strong> <span class="tag t-orig">원작</span>. 도구·작업대 보정(<code>correction</code>)은 원작 값이 어디에도 남아 있지 않아 여전히 0 이다</li>',
 '<li>클라이언트와 전용 서버가 <strong>같은 표·같은 계산</strong>을 쓴다 — 같은 세이브로 어느 쪽에 접속해도 제작 성공률이 같다</li>',
+'<li><strong>음식은 두 번까지만 가공된다</strong>(2026-09-12) <span class="tag t-est">추정</span> — 고기 하나로 꼬치구이를 <strong>두 번</strong> 할 수 있고 세 번째는 「더 이상 가공할 수 없는 아이템입니다」로 막힌다. 같은 제작법을 다시 쓰는 것은 그대로 허용한다. <code>eatable</code> 꼬리표를 단 원작 프로토타입 293종(잡은 고기·주운 열매·만든 요리 모두)이 가공 횟수 <strong>2</strong>로 생긴다. 음식이 아닌 물건은 그대로 <code>5 + 범주레벨/10</code> 이고, 이제 적힌 횟수를 <strong>끝까지</strong> 쓴다 — 예전에는 「남은 횟수」와 「가공한 횟수」 두 칸이 서로를 향해 달려와 절반에서 막혀 5회 물건이 세 번만 가공됐다(전용 서버는 처음부터 남은 칸만 봤다). 원작 자료에 남은 것은 구조뿐이라(레시피 <code>deduct_modifiable_count</code> + 아이템 <code>modifiable_count</code>) 횟수 2는 <strong>사용자 기억</strong>에 따른 값이다. 이미 저장된 물건의 횟수는 고쳐 쓰지 않는다</li>',
+'<li><strong>제작 시간 복원</strong>(2026-09-12) — 아이템이 먼저 가방에 들어가고 작업 모션이 그 뒤에 따라 돌던 것을 고쳤다. 서버가 제작 시간을 <code>recipes.txt</code> 의 <code>duration</code> 그대로 <span class="tag t-orig">원작</span> 돌려주지 않으면, 클라이언트가 제작 버튼을 누른 순간 띄운 <strong>10초짜리 임시 게이지·작업 모션</strong>이 결과가 온 뒤에도 계속 돌았다. 이제 시간이 0 초인 제작법도 그 답장을 받는다. 염색·탈색도 같은 길로 고쳤다 — 전에는 답장 순서 때문에 제작 창이 멈출 수 있었다</li>',
 '</ul>',
 /* 상점 섹션 (2026-09-11, claude/market-tabs-20260911) 근거:
    Durango.Offline/Shop.cs (상품 161개 생성 · 칸 두 개 · 값 규칙 · 구매 처리)
@@ -951,6 +953,52 @@ function STATUS_HTML(){ return [
 '<li>코인·워프젬으로 낱개 판매된 원작 상품(레인코트 외형장비 패키지 150 코인 등)은 <strong>값의 근거로 쓰지 않았다</strong> — 코인·워프젬을 마일리지로 바꾸는 비율이 자료에 없어서, 쓰면 환율이 둘 이상으로 늘어난다</li>',
 '</ul>',
 '<div class="note"><b>티스톤을 어디서 버나.</b> 워프홀·화물 워프홀·생체통신기를 처음 찾으면 <code>max(5, 섬 레벨 ÷ 2) × 4</code>(섬 Lv.45 에서 88), 섬의 탐험 지점을 다 찾으면 그 40배, 출석 하루 200, 군도 임무 1,500 이다. 2,500짜리 한 벌이 섬 Lv.45 워프홀 29곳쯤 된다.</div>',
+/* 지원단체 「지원 요청」 섹션 (2026-09-12, claude/faction-support-20260912) 근거:
+   Durango.Offline/FactionSupport.cs (단계 사다리 · 못 박힌 줄 넷 · 물자 레벨 · 쿨타임 · 목록 수명)
+   Durango.Logic.Faction/Faction.cs:208 HasAvailableSupportRequest (x.Level <= Level)
+   Durango.UI/FactionSupportRequestIndexList.cs:151 · FactionSupportRequestNodeList.cs:56
+   Durango.UI/FactionSupportRequestListWidget.cs:10 (MaxSupportRequestVisibleCount = 3)
+   original_yaml/constants.txt faction_support (support_level · support_duration_hours · support_fee)
+   original_yaml/factions.txt (단체별 cooltime 1800 · level_thresholds)
+   original_yaml/en_US.txt (gettext .mo — 원작 요청 이름 57개)
+   original_yaml/recipes.txt:39592, 41775 · blueprints.txt:28625 (단계를 못 박은 문장)
+   audit-server/claude-pm-20260909/faction-support-audit.md
+   tools/test/faction_support_check.ps1 */
+'<h3>지원단체 — 우호도 단계별 지원 요청</h3>',
+'<p><strong>우호도를 쌓으면 요청할 수 있는 물자가 늘어난다.</strong> 예전에는 단체마다 요청이 <strong>하나</strong>였고 그것도 1단계에 못 박혀 있어서, 우호도를 아무리 올려도 창이 그대로였다(사용자 보고 2026-09-12). 원작 창은 처음부터 단계별 표를 받을 준비가 되어 있었다 — 왼쪽 눈금이 <strong>1단계부터 최대 단계까지</strong>를 그리고 우호도 위를 자물쇠로 덮으며, 잠긴 단계를 눌러도 <strong>거기서 무엇을 받을 수 있는지</strong>를 미리 보여 준다 <span class="tag t-orig">원작</span>. 이제 서버가 그 표를 실제로 보낸다.</p>',
+'<ul>',
+'<li><strong>한 단계에 요청 셋</strong> <span class="tag t-orig">원작</span> — 원작 창이 한 장에 세 칸만 그린다(<code>MaxSupportRequestVisibleCount = 3</code>). 단계 수는 단체마다 다르다: 엽록포럼 · 개척회의 · 회사 · 위원회가 <strong>11단계</strong>, 무전기 대학 · 구조대TF가 <strong>10단계</strong>다(<code>factions.txt</code>의 <code>level_thresholds</code> 길이)</li>',
+'<li><strong>물자의 레벨은 내 레벨을 따라온다</strong> <span class="tag t-orig">원작</span> — <code>constants.faction_support.support_level</code> 이 <code>max(1, 내 레벨 ÷ 5 내림 × 5)</code> 다. 23레벨이면 <strong>20레벨 물건</strong>이 온다. 예전에는 무엇을 받아도 1레벨이었다. 물건이 가질 수 없는 레벨은 그 물건의 범위로 조인다(간이 나무삽은 최대 24레벨)</li>',
+'<li><strong>요청하면 30분 기다린다</strong> <span class="tag t-orig">원작</span> — <code>factions.txt</code> 의 단체별 <code>cooltime</code> 이 1800초다. 단체마다 따로 흐르므로 여러 단체를 번갈아 쓸 수 있다</li>',
+'<li><strong>목록은 7일마다 갈린다</strong> <span class="tag t-orig">원작</span> — <code>support_duration_hours = 168</code>. 갈릴 때 <strong>요청 횟수가 초기화</strong>된다(원작 도움말 「갱신시, 지원 목록이 바뀌고 요청 횟수가 초기화 됩니다.」). 한 장 동안 요청 하나를 <strong>세 번</strong>까지 쓴다 <span class="tag t-est">추정</span></li>',
+'<li><strong>요금은 없고 우호도도 주지 않는다</strong> — 원작 요금식 <code>int(물량 × exp_tstone) / 10 × 10</code> 의 <code>exp_tstone</code> 이 추출본 어디에도 없어 값을 셀 수 없다. 화면에 우호도 보상을 적어 놓고 실제로 안 올리면 거짓말이 되므로 0으로 둔다. <strong>우호도는 단체 임무로 올린다</strong></li>',
+'</ul>',
+'<h4>단계마다 무엇이 열리나 <span class="tag t-est">추정</span></h4>',
+'<p>원작 지원 요청표 자체는 서버 자료라 추출본에 없다. 그러나 <strong>서버가 보내던 요청 이름 57개가 번역 카탈로그에 그대로 남아 있고</strong>(<code>original_yaml/en_US.txt</code>), 그 이름이 <strong>기초 → 숙련 → 전문</strong>, <strong>일반 → 다듬은 → 가공 → 특수 → 화산</strong> 이라는 사다리를 이룬다. 그 사다리를 그대로 단계에 옮겼다. 단계마다 다섯 줄을 두고 <strong>단체는 자기 번호에서 시작해 셋</strong>을 집으므로 탭마다 보이는 것이 다르다. 아래 문턱은 엽록포럼 · 개척회의 · 회사 · 위원회 기준이다 <span class="tag t-orig">원작</span>.</p>',
+'<div class="tw"><table>',
+'<thead><tr><th>단계</th><th>우호도</th><th>그 단계의 요청 다섯 (원작 이름)</th></tr></thead>',
+'<tbody>',
+'<tr><td class="num">1</td><td class="num">1단계부터</td><td>기본 식재료 요청 · 일반 숲자원 요청 · 일반 광물자원 요청 · 기초 채집도구 요청 · 초급 종자 요청</td></tr>',
+'<tr><td class="num">2</td><td class="num">50</td><td>일반 가죽자원 요청 · 일반 뼈자원 요청 · 기초 요리도구 요청 · 보조 식재료 요청 · 건축재료 요청</td></tr>',
+'<tr><td class="num">3</td><td class="num">130</td><td>기초 제작부품 요청 · 다듬은 숲자원 요청 · 다듬은 광물자원 요청 · 기초 의상 재료 요청 · 가죽끈 요청</td></tr>',
+'<tr><td class="num">4</td><td class="num">520</td><td>건조 가죽자원 요청 · 다듬은 뼈자원 요청 · 기초 농사도구 요청 · 기초 무기부품 요청 · 일반 고기자원 요청</td></tr>',
+'<tr><td class="num">5</td><td class="num">1,150</td><td>숙련 채집도구 요청 · 가공 숲자원 요청 · 가공 광물자원 요청 · 일반 동물부산물 요청 · 중급 종자 요청</td></tr>',
+'<tr><td class="num">6</td><td class="num">2,850</td><td>숙련 제작부품 요청 · 무두질한 가죽자원 요청 · 가공 뼈자원 요청 · 숙련 요리도구 요청 · 건조가죽끈 요청</td></tr>',
+'<tr><td class="num">7</td><td class="num">5,600</td><td>기초 금속소모품 요청 · 다듬은 건축재료 요청 · 숙련 의상 재료 요청 · 숙련 농사도구 요청 · 숙련 무기부품 요청</td></tr>',
+'<tr><td class="num">8</td><td class="num">11,830</td><td>향신료 요청 · 특수 광물자원 요청 · 특수 숲자원 요청 · 특수 뼈자원 요청 · 특수 가죽자원 요청</td></tr>',
+'<tr><td class="num">9</td><td class="num">21,910</td><td>전문 채집도구 요청 · 전문 제작부품 요청 · 전문 요리도구 요청 · 전문 농사도구 요청 · 고급 종자 요청</td></tr>',
+'<tr><td class="num">10</td><td class="num">45,210</td><td>전문 금속소모품 요청 · 전문 무기부품 요청 · 화산 숲자원 요청 · 화산 광물자원 요청 · 화산 뼈자원 요청</td></tr>',
+'<tr><td class="num">11</td><td class="num">70,810</td><td>화산 종자 요청 · 현대 부품 요청 · 용암 채집 장비 요청 · 의약품 보급 · 동물 의약품 보급</td></tr>',
+'</tbody></table></div>',
+'<h4>원작이 단계를 못 박은 줄 넷 <span class="tag t-orig">원작</span></h4>',
+'<p>아래 넷은 원작 자료가 단체와 단계를 이름 대고 적어 둔 것이라, 그 단체 · 그 단계의 <strong>첫 칸</strong>을 차지한다.</p>',
+'<ul>',
+'<li><strong>위원회 1단계 → 찢어진 도면</strong> — <code>recipes.txt</code> 의 <code>restore_volc_blueprint</code> 획득처가 「위원회 1단계에서 지원요청 할 수 있습니다.」다</li>',
+'<li><strong>회사 1단계 → 제작력 지원 요리</strong> — 원작 안내가 「회사 지원요청 1단계에서 제작력 지원 요리를 요청하세요」라고 적는다. 주는 물건은 우리가 고른 것이다 <span class="tag t-est">추정</span></li>',
+'<li><strong>개척회의 7단계 → 현대 부품</strong> — 합금 제작법 둘(<code>leadedbronze_alloy</code> · <code>freecuttingbrass_alloy</code>)의 획득처가 「개척회의 7단계에서 지원 요청할 수 있습니다.」다</li>',
+'<li><strong>엽록포럼 9단계 → 물뿜이 재료</strong> — 물뿜이 도면 셋의 획득처가 「엽록포럼 우호도 9단계 지원 요청으로 획득합니다.」다. 이름도 원작의 <strong>「물뿜이 재료 요청」</strong> 그대로다</li>',
+'</ul>',
+'<div class="note"><b>높은 단계는 멀다.</b> 우호도 문턱은 원작 값 그대로라 부풀리지 않았다 — 2단계 50점은 단체 임무 두어 번이지만, 6단계 2,850점은 임무 백 번쯤이고 10단계 70,810점은 사실상 원작의 다른 우호도 원천 없이는 닿지 않는다. 지금 실제로 쓰게 되는 것은 <strong>1~5단계</strong>다.</div>',
 /* 제작법 획득 섹션 (2026-09-11, claude/recipeguide-20260911) 근거:
    Durango.Offline/CraftingRewards.cs (게이트 집합 구성 · 사다리 순회 · 제작법 책 · 이어받기 규칙)
    original_yaml/crafting_rewards_datas.txt + crafting_rewards.txt (사다리 전체: 제작법 74 · 도면 29 · 수치보정 32단)
