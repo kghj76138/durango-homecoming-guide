@@ -46,7 +46,7 @@ b,strong{font-weight:600}
 code{font-family:"IBM Plex Mono",monospace;font-size:.88em;background:var(--paper-2);border:1px solid var(--line-soft);padding:0 4px;border-radius:2px;word-break:break-word}
 
 .bar{position:sticky;top:0;z-index:30;background:var(--ground);border-bottom:1px solid var(--line)}
-.barin{max-width:1280px;margin:0 auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
+.barin{max-width:1840px;margin:0 auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
 .brand{font-family:Hahmlet,serif;font-weight:800;font-size:19px;color:var(--ink);text-decoration:none;white-space:nowrap}
 .brand em{font-style:normal;color:var(--accent)}
 .gsearch{flex:1;position:relative;max-width:520px}
@@ -56,12 +56,12 @@ code{font-family:"IBM Plex Mono",monospace;font-size:.88em;background:var(--pape
 #qr li a span{display:block;font-size:11.5px;color:var(--muted)}
 #qr li a:hover,#qr li a.on{background:var(--accent-soft)}
 #theme{font:inherit;background:none;border:1px solid var(--line);color:var(--muted);padding:4px 9px;cursor:pointer;border-radius:2px}
-nav.top{max-width:1280px;margin:0 auto;padding:0 16px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin}
+nav.top{max-width:1840px;margin:0 auto;padding:0 16px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin}
 nav.top a{font-size:13.5px;padding:8px 11px;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
 nav.top a:hover{color:var(--ink)}
 nav.top a[aria-current]{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
 
-.layout{max-width:1280px;margin:0 auto;padding:0 16px 60px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px}
+.layout{max-width:1840px;margin:0 auto;padding:0 16px 60px;display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px}
 aside.toc{position:sticky;top:104px;align-self:start;max-height:calc(100vh - 120px);overflow:auto;padding-top:24px;font-size:13px}
 aside.toc summary{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;color:var(--muted);cursor:pointer;margin-bottom:6px}
 aside.toc ol{margin:0;padding-left:26px}
@@ -81,8 +81,9 @@ section p,section li{max-width:84ch}
 .cap{font-size:12.5px;color:var(--muted);margin:10px 0 4px}
 
 .tw{overflow-x:auto;border:1px solid var(--line);background:var(--paper);margin:6px 0 12px;max-height:78vh;overflow-y:auto}
-table{border-collapse:collapse;width:100%;font-size:13.5px}
-th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.5}
+th,td{text-align:left;padding:5px 9px;border-bottom:1px solid var(--line-soft);vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
+.nw,td.nw{white-space:nowrap}
 th{position:sticky;top:0;font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:11px;letter-spacing:.05em;color:var(--muted);background:var(--paper-2);white-space:nowrap;cursor:pointer;user-select:none;z-index:1}
 th:hover{color:var(--ink)}
 th[data-dir="asc"]::after{content:" ▴";color:var(--accent)}
@@ -105,15 +106,31 @@ dl.kv dt{color:var(--muted);font-size:13px}
 dl.kv dd{margin:0}
 .formula{font-family:"IBM Plex Mono",monospace;font-size:13.5px;background:var(--paper);border:1px solid var(--line);padding:8px 12px;margin:8px 0;overflow-x:auto;white-space:pre-wrap}
 
-main.home{max-width:1280px;margin:0 auto;padding:0 16px 60px}
+main.home{max-width:1840px;margin:0 auto;padding:0 16px 60px}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:18px}
 .card{display:block;background:var(--paper);border:1px solid var(--line);padding:14px 16px;text-decoration:none;color:var(--ink)}
 .card:hover{border-color:var(--accent)}
 .card h3{font-family:Hahmlet,serif;margin:0 0 6px;font-size:18px}
 .card p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2)}
 .card .meta{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted)}
-.foot{max-width:1280px;margin:0 auto;padding:20px 16px 40px;font-size:12px;color:var(--muted)}
+.foot{max-width:1840px;margin:0 auto;padding:20px 16px 40px;font-size:12px;color:var(--muted)}
 
+@media (max-width:640px){
+  table.cardt thead{display:none}
+  table.cardt,table.cardt tbody,table.cardt tr,table.cardt td{display:block;width:100%}
+  table.cardt tr{border-bottom:2px solid var(--line);padding:6px 0}
+  table.cardt td{border:0;padding:2px 10px 2px calc(34% + 10px);position:relative;min-height:1.6em}
+  table.cardt td::before{content:attr(data-label);position:absolute;left:10px;width:calc(34% - 8px);color:var(--muted);font-size:11.5px;line-height:1.9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  table.cardt td:first-child{padding-left:10px;font-size:14.5px}
+  table.cardt td:first-child::before,table.cardt td[data-label=""]::before{display:none}
+  table.cardt td[data-label=""]{padding-left:10px}
+  table.cardt td.num{text-align:left}
+  table.cardt td.nw{white-space:normal}
+  .tw:has(> table.cardt){max-height:none;overflow:visible;border:0;background:none}
+  table.cardt tr{background:var(--paper);border:1px solid var(--line);margin-bottom:8px}
+  table.numt th:first-child,table.numt td:first-child{position:sticky;left:0;background:var(--paper-2);z-index:2}
+  table.numt th:first-child{z-index:3}
+}
 @media (max-width:860px){
   .layout{grid-template-columns:1fr;gap:0}
   aside.toc{position:static;max-height:none;padding-top:12px}
@@ -130,7 +147,7 @@ main.home{max-width:1280px;margin:0 auto;padding:0 16px 60px}
 <button id="theme" type="button" aria-label="밝게/어둡게">◐</button>
 </div><nav class="top" aria-label="위키 페이지"><a href="index.html" aria-current="page">처음</a><a href="stats.html">캐릭터 능력치</a><a href="skills.html">스킬</a><a href="food.html">요리</a><a href="food-list.html">음식 목록</a><a href="craft.html">제작·가공</a><a href="craft-list.html">제작법 전체 목록</a><a href="materials.html">재료 성질</a><a href="gather.html">채집</a><a href="gather-list.html">채집물 목록</a><a href="animals.html">동물</a><a href="animals-list.html">동물 도감</a><a href="pets.html">펫</a><a href="farming.html">농사</a><a href="world.html">섬·항해·날씨</a><a href="building.html">건축·사유지·연구</a><a href="changes.html">협동 섬·원작 대비 변경</a><a href="guide.html">동물·섬 자료집</a></nav></div>
 <main class="home"><header class="ph"><h1>듀랑고:0 <em>홈커밍 드리머</em> 위키</h1><div class="lead"><p>복원판에 실제로 들어간 규칙과 수치를 모았습니다. 표의 값은 사람이 옮겨 적은 것이 아니라 원작 추출 자료와 <b>지금 배포된 게임 코드</b>에서 직접 뽑아 만든 것입니다. 원작 자료와 복원판 조정이 다르면 게임에 실제로 적용되는 값을 적고 <span class="badge b-orig">원작</span> <span class="badge b-fork">포크</span> <span class="badge b-user">사용자 결정</span> <span class="badge b-guess">추정</span> 표시로 구분했습니다.</p><p>위의 검색창에서 음식·동물·채집물·스킬 이름으로 바로 찾을 수 있습니다. 동물·섬의 정렬·필터 도구는 <a href="guide.html">동물·섬 자료집</a>에 있습니다.</p></div></header><div class="cards"><a class="card" href="stats.html"><h3>캐릭터 능력치</h3><p>기본 능력치 8개가 전투·제작·채집·생존 능력치로 바뀌는 식, 레벨별 값, 생존 게이지, 기후 저항, 칭호, 레벨·경험치를 모았습니다. 표의 값은 배포 중인 게임 코드(DLL)의 규칙 함수를 직접 실행해 뽑았습니다.</p><span class="meta">섹션 11 · 항목 155</span></a><a class="card" href="skills.html"><h3>스킬</h3><p>원작 기술 트리 918마디 전부를 범주별로 싣고, 마디마다 요구 범주 레벨·SP·효과를 적었습니다. 범주 레벨·연구, 자동 습득, 기술 레벨이 작업 시간·결과 레벨에 주는 영향도 함께 봅니다.</p><span class="meta">섹션 17 · 항목 296</span></a><a class="card" href="food.html"><h3>요리</h3><p>음식을 먹으면 무엇이 오르는지, 어떻게 요리하면 수치가 어떻게 바뀌는지를 게임 코드가 쓰는 식 그대로 정리했습니다. 음식 하나하나의 레벨별 수치는 음식 목록에 있습니다.</p><span class="meta">섹션 16 · 항목 321</span></a><a class="card" href="food-list.html"><h3>음식 목록</h3><p>게임에 있는 음식 352종 전부입니다. 60레벨(최대 레벨이 60 미만이면 최대 레벨) 값을 표에, 레벨 1·10·20·…·70 값을 「상세」에 적었습니다. 값은 얻은 그대로(요리하지 않은) 상태의 값이며, 요리하면 조리법의 성질이 붙어 바뀝니다 (요리 비교표). 버프에는 포크 음식 버</p><span class="meta">섹션 7 · 항목 352</span></a><a class="card" href="craft.html"><h3>제작·가공</h3><p>제작·가공·개조·수리의 규칙과 공식입니다. 표의 숫자는 배포된 게임의 규칙 함수(CraftMathRules 등)를 직접 실행해 얻은 값입니다. 제작법 720개의 재료·작업대·시간은 제작법 전체 목록에 있습니다.</p><span class="meta">섹션 12 · 항목 67</span></a><a class="card" href="craft-list.html"><h3>제작법 전체 목록</h3><p>원작 recipes.txt 의 제작법 720개 전부입니다. 배우는 길은 게임이 제작법을 여는 판정 (기술 마디 → 이벤트 잠금 → 숙련 사다리·제작법 책 → 기본 공개) 순서를 그대로 따릅니다. 규칙과 공식은 제작·가공 페이지에 있습니다.</p><span class="meta">섹션 12 · 항목 720</span></a><a class="card" href="materials.html"><h3>재료 성질</h3><p>재료의 성질(잠재속성)과 희귀 속성이 어디서 붙고, 제작품·건물에서 무엇으로 바뀌며, 레벨마다 얼마인지입니다. 성질 → 효과 표는 게임의 규칙 함수에 성질을 하나씩 넣어 실제로 돌린 결과입니다. 제작 규칙은 제작·가공.</p><span class="meta">섹션 11 · 항목 217</span></a><a class="card" href="gather.html"><h3>채집</h3><p>자연물에서 재료를 얻는 규칙 — 판정, 레벨, 성질, 도구와 기술, 작업 시간, 에너지, 재보충, 크레이터. 채집물 하나하나는 채집물 목록에 있습니다.</p><span class="meta">섹션 13 · 항목 154</span></a><a class="card" href="gather-list.html"><h3>채집물 목록</h3><p>채집물 244종의 산출 줄 — 개수, 필요한 도구, 레벨 1 기준 작업 시간, 필요한 기술 — 과 나오는 섬. 「나오는 섬」은 원작 섬 템플릿이 그 자연물을 싣고 있는 기후·레벨이고, 「원작 지형 실측 개수」는 원작 대표 지형 13개에 실제로 깔린 수입니다. 규칙은 채집 페이지를 보세요</p><span class="meta">섹션 10 · 항목 413</span></a><a class="card" href="animals.html"><h3>동물</h3><p>야생 동물의 능력치 공식, 전투 판정, 부위 파괴, 처치 경험치, 도축, 생태, 보스 규칙.</p><span class="meta">섹션 11 · 항목 125</span></a><a class="card" href="animals-list.html"><h3>동물 도감</h3><p>야생 동물 220종의 서식지·레벨별 능력치·도축물·잠재 속성·펫 여부.</p><span class="meta">섹션 2 · 항목 220</span></a><a class="card" href="pets.html"><h3>펫</h3><p>길들이기·등급·레벨과 이정표·훈련과 생산·수명과 노화·먹이·전투·액티브 스킬, 그리고 펫 111종 목록.</p><span class="meta">섹션 10 · 항목 180</span></a><a class="card" href="farming.html"><h3>농사</h3><p>밭에 씨앗을 심어 기르는 규칙 — 작물 레벨, 생장 시간, 물·물뿜이, 비옥도, 땅 궁합, 생존율, 수확량, 도감 — 과 작물 53종 목록.</p><span class="meta">섹션 10 · 항목 73</span></a><a class="card" href="world.html"><h3>섬·항해·날씨</h3><p>섬의 종류와 항해, 불안정 지수, 개척 등급과 개척 임무, 단체 임무, 보스 레이드, 워프, 날씨와 기후, 닫힌 크레이터를 다룹니다. 모든 표는 원작 자료와 배포 중인 게임 코드에서 자동으로 뽑았습니다.</p><span class="meta">섹션 11 · 항목 573</span></a><a class="card" href="building.html"><h3>건축·사유지·연구</h3><p>조립식 건축 규칙, 재료 무늬, 작업대 동시 제작 수, 가방 용량, 사유지, 설계도 전체, 개인 연구를 다룹니다.</p><span class="meta">섹션 7 · 항목 726</span></a><a class="card" href="changes.html"><h3>협동 섬·원작 대비 변경</h3><p>협동 섬이 싱글과 무엇이 같고 다른지, NPC 부족원과 부족, 그리고 원작 대비 바뀐 것 전체 목록입니다.</p><span class="meta">섹션 4 · 항목 21</span></a></div></main>
-<footer class="foot">생성 2026-09-25 10:03 · 원작 추출 자료와 배포 중인 게임 코드에서 자동 생성 · 비공식 팬 복원 프로젝트</footer>
+<footer class="foot">생성 2026-09-25 10:55 · 원작 추출 자료와 배포 중인 게임 코드에서 자동 생성 · 비공식 팬 복원 프로젝트</footer>
 <script src="search.js"></script>
 <script>(function(){
 "use strict";
