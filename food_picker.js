@@ -37,9 +37,8 @@
     return (recipe.results || []).find(branch => !branch.condition)?.item || null;
   }
 
-  function craftedLevel(recipe, materialLevels, skillLevel, workbenchLevel, great) {
-    const known = [skillLevel, workbenchLevel].filter(value => Number(value) > 0);
-    const cap = known.length ? Math.min(...known) : 0;
+  function craftedLevel(recipe, materialLevels, skillLevel, great) {
+    const cap = Math.max(Number(skillLevel) || 0, 0);
     let level = materialLevels.length ? Math.floor(materialLevels.reduce((a, b) => a + b, 0) / materialLevels.length) :
       Math.max(Number(recipe.min_level) || 0, 1);
     if (cap > 0) level = Math.min(level, cap);
@@ -286,7 +285,6 @@
   const levelInput = root.querySelector('[data-level]');
   const resultLevelInput = root.querySelector('[data-result-level]');
   const skillLevelInput = root.querySelector('[data-skill-level]');
-  const benchLevelInput = root.querySelector('[data-bench-level]');
   const slotBox = root.querySelector('[data-slots]');
   const gradeSelect = root.querySelector('[data-grade]');
   const secondSelect = root.querySelector('[data-second]');
@@ -370,7 +368,7 @@
     if (!materials) return;
     const count = Object.values(materials).reduce((total, ids) => total + ids.length, 0);
     const calculatedLevel = craftedLevel(recipe, Array(count).fill(level),
-      Number(skillLevelInput.value), Number(benchLevelInput.value), gradeSelect.value === 'great');
+      Number(skillLevelInput.value), gradeSelect.value === 'great');
     const outputLevel = resultLevelInput.value ? Number(resultLevelInput.value) : calculatedLevel;
     if (!Number.isInteger(outputLevel) || outputLevel < 1 || outputLevel > 70) {
       answer.textContent = '완성 음식 레벨은 1~70으로 입력하세요.';
@@ -422,7 +420,7 @@
     const fmt = value => Number(value).toFixed(1).replace(/\.0$/, '');
     const traits = Object.entries(tags).filter(([id]) => catalog.tags[id]);
     const lines = [`결과: ${name} (${result}) Lv${recipe.type === 1 ? level : outputLevel} +${modified} · 남은 가공 ${remaining}회`,
-      recipe.type === 0 ? `결과 레벨: 재료 평균·기술·작업대·제작법 범위·대성공을 적용한 ${calculatedLevel}` +
+      recipe.type === 0 ? `결과 레벨: 재료 평균·기술·제작법 범위·대성공을 적용한 ${calculatedLevel}` +
         (resultLevelInput.value ? `, 실제 완성물 입력 ${outputLevel}` : '') : '제자리 조리: 재료 자체의 레벨 유지',
       `음식 성질: ${traits.map(([id, value]) => `${catalog.tags[id].name} Lv${value}`).join(', ') || '없음'}`];
     for (const [id, value] of traits) {
@@ -451,7 +449,6 @@
   levelInput.addEventListener('change', renderSlots);
   resultLevelInput.addEventListener('change', renderAnswer);
   skillLevelInput.addEventListener('change', renderAnswer);
-  benchLevelInput.addEventListener('change', renderAnswer);
   secondSelect.addEventListener('change', renderSecondSlots);
   gradeSelect.addEventListener('change', renderAnswer);
   secondGradeSelect.addEventListener('change', renderAnswer);
