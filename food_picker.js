@@ -325,7 +325,7 @@
         select.dataset.slot = slot.slot_id;
         select.dataset.required = index < slot.count_min ? 'yes' : 'no';
         select.append(new Option(index < slot.count_min ? '재료 선택' : '추가 재료 없음', ''));
-        for (const id of ids) select.append(new Option(`${catalog.items[id].name} (${id})`, id));
+        for (const id of ids) select.append(new Option(catalog.items[id].name, id));
         label.append(select);
       }
       box.append(label);
