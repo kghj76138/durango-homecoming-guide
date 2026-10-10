@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercenaries — Durango:0 Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%273%27 fill=%27%230E6857%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;600;800&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>:root{
+  --ground:#E7EAE5; --paper:#FAFBF8; --paper-2:#F1F3EE;
+  --ink:#161C19; --ink-2:#39443E; --muted:#68746D;
+  --line:#CFD5CD; --line-soft:#DFE4DC;
+  --accent:#0E6857; --accent-soft:#D6E7E1;
+  --warn:#A2412A; --warn-soft:#F0DED7;
+  --gold:#96701F; --gold-soft:#EDE3CB;
+  --blue:#2B5C8A; --blue-soft:#DCE6F0;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#10140F; --paper:#181D19; --paper-2:#1F2521;
+  --ink:#E7ECE6; --ink-2:#BFC9C2; --muted:#8D9A92;
+  --line:#2E3833; --line-soft:#252D28;
+  --accent:#48C2A6; --accent-soft:#12352E;
+  --warn:#E58B6C; --warn-soft:#3A241C;
+  --gold:#D4AC5C; --gold-soft:#332A16;
+  --blue:#8DB8E2; --blue-soft:#1A2A3A;
+}}
+:root[data-theme="dark"]{
+  --ground:#10140F; --paper:#181D19; --paper-2:#1F2521;
+  --ink:#E7ECE6; --ink-2:#BFC9C2; --muted:#8D9A92;
+  --line:#2E3833; --line-soft:#252D28;
+  --accent:#48C2A6; --accent-soft:#12352E;
+  --warn:#E58B6C; --warn-soft:#3A241C;
+  --gold:#D4AC5C; --gold-soft:#332A16;
+  --blue:#8DB8E2; --blue-soft:#1A2A3A;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:110px}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"IBM Plex Sans KR","Malgun Gothic",system-ui,sans-serif;font-weight:300;line-height:1.7;
+  -webkit-font-smoothing:antialiased;font-size:15px}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+b,strong{font-weight:600}
+code{font-family:"IBM Plex Mono",monospace;font-size:.88em;background:var(--paper-2);border:1px solid var(--line-soft);padding:0 4px;border-radius:2px;word-break:break-word}
+
+.bar{position:sticky;top:0;z-index:30;background:var(--ground);border-bottom:1px solid var(--line)}
+.barin{max-width:1840px;margin:0 auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
+.brand{font-family:Hahmlet,serif;font-weight:800;font-size:19px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand em{font-style:normal;color:var(--accent)}
+.gsearch{flex:1;position:relative;max-width:520px}
+.gsearch input{width:100%;font:inherit;font-size:14px;padding:7px 11px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:2px}
+#qr{position:absolute;left:0;right:0;top:100%;margin:2px 0 0;padding:0;list-style:none;background:var(--paper);border:1px solid var(--line);max-height:60vh;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+#qr li a{display:block;padding:6px 11px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line-soft)}
+#qr li a span{display:block;font-size:11.5px;color:var(--muted)}
+#qr li a:hover,#qr li a.on{background:var(--accent-soft)}
+#theme{font:inherit;background:none;border:1px solid var(--line);color:var(--muted);padding:4px 9px;cursor:pointer;border-radius:2px}
+nav.top{max-width:1840px;margin:0 auto;padding:0 16px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin}
+nav.top a{font-size:13.5px;padding:8px 11px;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+nav.top a:hover{color:var(--ink)}
+nav.top a[aria-current]{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
+
+.layout{max-width:1840px;margin:0 auto;padding:0 16px 60px;display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px}
+aside.toc{position:sticky;top:104px;align-self:start;max-height:calc(100vh - 120px);overflow:auto;padding-top:24px;font-size:13px}
+aside.toc summary{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;color:var(--muted);cursor:pointer;margin-bottom:6px}
+aside.toc ol{margin:0;padding-left:26px}
+aside.toc a{color:var(--ink-2);text-decoration:none}
+aside.toc a:hover{color:var(--accent)}
+main{min-width:0}
+header.ph{padding:26px 0 8px;border-bottom:1px solid var(--line);margin-bottom:8px}
+header.ph h1{font-family:Hahmlet,serif;font-weight:800;font-size:clamp(26px,4vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0 0 8px}
+header.ph h1 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--ink-2);max-width:78ch}
+section{padding:18px 0 8px;border-bottom:1px solid var(--line-soft)}
+section h2{font-family:Hahmlet,serif;font-weight:600;font-size:22px;margin:6px 0 10px;letter-spacing:-.01em}
+section h2 .hl{color:var(--line);text-decoration:none;margin-right:6px;font-size:.8em}
+section h2:hover .hl{color:var(--accent)}
+section h3{font-size:16px;font-weight:600;margin:20px 0 8px}
+section p,section li{max-width:84ch}
+.cap{font-size:12.5px;color:var(--muted);margin:10px 0 4px}
+
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--paper);margin:6px 0 12px;max-height:78vh;overflow-y:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.5}
+th,td{text-align:left;padding:5px 9px;border-bottom:1px solid var(--line-soft);vertical-align:top;word-break:keep-all;overflow-wrap:break-word}
+.nw,td.nw{white-space:nowrap}
+th{position:sticky;top:0;font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:11px;letter-spacing:.05em;color:var(--muted);background:var(--paper-2);white-space:nowrap;cursor:pointer;user-select:none;z-index:1}
+th:hover{color:var(--ink)}
+th[data-dir="asc"]::after{content:" ▴";color:var(--accent)}
+th[data-dir="desc"]::after{content:" ▾";color:var(--accent)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:hover td{background:var(--paper-2)}
+td .sub{display:block;color:var(--muted);font-size:12px}
+input.tf{font:inherit;font-size:13px;padding:5px 9px;margin:8px 0 0;width:min(320px,100%);background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:2px}
+
+.badge{display:inline-block;font-size:11px;padding:0 7px;border-radius:999px;white-space:nowrap;border:1px solid;line-height:1.6;vertical-align:1px;font-weight:400}
+.b-orig{color:var(--ink-2);border-color:var(--line);background:var(--paper-2)}
+.b-fork{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+.b-user{color:var(--blue);border-color:var(--blue);background:var(--blue-soft)}
+.b-guess{color:var(--gold);border-color:var(--gold);background:var(--gold-soft)}
+.note{border-left:3px solid var(--accent);background:var(--paper);padding:8px 14px;margin:10px 0;max-width:84ch}
+.n-warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.n-fork{border-left-color:var(--blue)}
+dl.kv{display:grid;grid-template-columns:max-content 1fr;gap:3px 16px;margin:8px 0;max-width:84ch}
+dl.kv dt{color:var(--muted);font-size:13px}
+dl.kv dd{margin:0}
+.formula{font-family:"IBM Plex Mono",monospace;font-size:13.5px;background:var(--paper);border:1px solid var(--line);padding:8px 12px;margin:8px 0;overflow-x:auto;white-space:pre-wrap}
+
+main.home{max-width:1840px;margin:0 auto;padding:0 16px 60px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:18px}
+.card{display:block;background:var(--paper);border:1px solid var(--line);padding:14px 16px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--accent)}
+.card h3{font-family:Hahmlet,serif;margin:0 0 6px;font-size:18px}
+.card p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2)}
+.card .meta{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted)}
+.foot{max-width:1840px;margin:0 auto;padding:20px 16px 40px;font-size:12px;color:var(--muted)}
+
+@media (max-width:640px){
+  table.cardt thead{display:none}
+  table.cardt,table.cardt tbody,table.cardt tr,table.cardt td{display:block;width:100%}
+  table.cardt tr{border-bottom:2px solid var(--line);padding:6px 0}
+  table.cardt td{border:0;padding:2px 10px 2px calc(34% + 10px);position:relative;min-height:1.6em}
+  table.cardt td::before{content:attr(data-label);position:absolute;left:10px;width:calc(34% - 8px);color:var(--muted);font-size:11.5px;line-height:1.9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  table.cardt td:first-child{padding-left:10px;font-size:14.5px}
+  table.cardt td:first-child::before,table.cardt td[data-label=""]::before{display:none}
+  table.cardt td[data-label=""]{padding-left:10px}
+  table.cardt td.num{text-align:left}
+  table.cardt td.nw{white-space:normal}
+  .tw:has(> table.cardt){max-height:none;overflow:visible;border:0;background:none}
+  table.cardt tr{background:var(--paper);border:1px solid var(--line);margin-bottom:8px}
+  table.numt th:first-child,table.numt td:first-child{position:sticky;left:0;background:var(--paper-2);z-index:2}
+  table.numt th:first-child{z-index:3}
+}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:0}
+  aside.toc{position:static;max-height:none;padding-top:12px}
+  .brand{font-size:16px}
+  html{scroll-padding-top:120px}
+  .barin{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<div class="bar"><div class="barin">
+<a class="brand" href="index.html">Durango:0 <em>Wiki</em></a>
+<div class="gsearch"><input id="q" type="search" placeholder="Search foods, animals, gatherables, skills" aria-label="Search the wiki" autocomplete="off"><ol id="qr" hidden></ol></div>
+<a class="lang" href="../mercenary.html" hreflang="ko" lang="ko" style="font-size:13px;border:1px solid var(--line);color:var(--muted);padding:3px 9px;border-radius:2px;text-decoration:none;white-space:nowrap" onclick="this.href=this.href.split('#')[0]+location.hash">한국어</a>
+<button id="theme" type="button" aria-label="Light/dark">◐</button>
+</div><nav class="top" aria-label="Wiki pages"><a href="index.html">Home</a><a href="stats.html">Character stats</a><a href="skills.html">Skills</a><a href="../quests.html">Quests <small>(KO)</small></a><a href="food.html">Cooking</a><a href="food-list.html">Food list</a><a href="craft.html">Crafting &amp; processing</a><a href="craft-list.html">All recipes</a><a href="materials.html">Material properties</a><a href="gather.html">Gathering</a><a href="gather-list.html">Gatherables</a><a href="animals.html">Animals</a><a href="animals-list.html">Animal encyclopedia</a><a href="pets.html">Pets</a><a href="farming.html">Farming</a><a href="world.html">Islands, sailing &amp; weather</a><a href="building.html">Building, domains &amp; research</a><a href="changes.html">Co-op island &amp; changes from the original</a><a href="reports.html">Bug reports</a><a href="patches.html">Patch history</a><a href="mercenary.html" aria-current="page">Mercenaries</a><a href="../guide.html">Animal &amp; island data <small>(KO)</small></a><a href="https://blog.naver.com/kghj76138" target="_blank" rel="noopener">Developer Notes (KR)</a></nav></div>
+<div class="layout"><aside class="toc"><details open><summary>On this page</summary><ol><li><a href="#hire" class="nw">Hiring</a></li><li><a href="#odds" class="nw">Grade probability</a></li><li><a href="#reroll" class="nw">Reroll</a></li><li><a href="#grades" class="nw">Stats by grade</a></li><li><a href="#enhance" class="nw">Enhancement</a></li><li><a href="#gear">Gear &amp; bag</a></li><li><a href="#down">Knockdown &amp; revival</a></li><li><a href="#manage">Rest &amp; dismissal</a></li></ol></details></aside><main><header class="ph"><h1>Mercenaries</h1><div class="lead"><p>Mercenaries hired at the clan board (formerly NPC clan members) — hiring prices, grade odds and pity, rerolls, stats by grade, enhancement odds and costs, gear and bags, knockdown and revival, and dismissal.</p></div><div class="note n-info grade-legend"><b>Source grade</b> — the badge next to a value shows its basis. <b>Last changed</b> next to a section title is the public version in which that section's content last changed, and links to <a href="patches.html">Patch history</a>.<ul><li><span class="badge b-orig" data-grade="원작 확정" title="A value taken directly from a row of the extracted original data with no signs of editing, or from the original client code">Original (confirmed)</span> A value taken directly from a row of the extracted original data with no signs of editing, or from the original client code</li><li><span class="badge b-guess" data-grade="추정" title="A value the restoration filled in because the original data has no field for it (e.g. rules that were server-only)">Estimated</span> A value the restoration filled in because the original data has no field for it (e.g. rules that were server-only)</li><li><span class="badge b-user" data-grade="원작과 다르게 바꿈(사용자 결정)" title="A value that exists in the original but was set differently by developer decision">Changed from original (developer decision)</span> A value that exists in the original but was set differently by developer decision — 8 on this page</li><li><span class="badge b-orig" data-grade="미확인" style="border-style:dashed" title="Values not yet backed by a source — Shown in section title">Unverified</span> Values not yet backed by a source — Shown in section title</li></ul></div><p class="cap">Last changed on this page: <a href="patches.html#2026.10.10.7">2026.10.10.7</a></p></header><section id="hire"><h2><a class="hl" href="#hire">#</a>Hiring<small class="ver" style="font-size:12px;font-weight:400;margin-left:8px">Last changed <a href="patches.html#2026.10.10.7">2026.10.10.7</a></small></h2><p>Mercenaries are not in the original game. The former NPC clan members were turned into a hiring system by developer decision, and every value is newly set <span class="badge b-user" data-grade="원작과 다르게 바꿈(사용자 결정)" title="A value that exists in the original but was set differently by developer decision">Changed from original (developer decision)</span>. At the clan board's “Hire mercenary” you pick one of 3 candidates (you need a clan).</p><dl class="kv"><dt>Max members</dt><dd>10 (following + resting mercenaries combined)</dd><dt>Price</dt><dd>Each further slot costs more. Slots 1–8 cost T-Stones, slot 9 onward Warp Gems</dd><dt>Price multiplier by grade</dt><dd>S ×3 · A ×1.8 · B ×1 · C ×0.5 (of the B price; same multipliers for Warp Gem slots)</dd><dt>On someone else's island</dt><dd>Visiting a friend's island (hosted on another PC) as a guest, only your first 3 mercenaries appear. The rest stay on your roster and simply don't appear on that island. On the guest's own Tamed Island, all of them appear</dd><dt>Level</dt><dd>Mercenary level = owner level × 1</dd></dl><h3>Hiring price by slot</h3><div class="tw"><table class="numt "><thead><tr><th class="s">Spot</th><th class="s">Currency</th><th class="s num">Grade S</th><th class="s num">Grade A</th><th class="s num">Grade B</th><th class="s num">Grade C</th></tr></thead><tbody><tr><td data-label="Spot" class="nw">#1</td><td data-label="Currency" class="nw">T-Stones</td><td class="nw num" data-label="Grade S">3,000</td><td class="nw num" data-label="Grade A">1,800</td><td class="nw num" data-label="Grade B">1,000</td><td class="nw num" data-label="Grade C">500</td></tr><tr><td data-label="Spot" class="nw">#2</td><td data-label="Currency" class="nw">T-Stones</td><td class="nw num" data-label="Grade S">9,000</td><td class="nw num" data-label="Grade A">5,400</td><td class="nw num" data-label="Grade B">3,000</td><td class="nw num" data-label="Grade C">1,500</td></tr><tr><td data-label="Spot" class="nw">#3</td><td data-label="Currency" class="nw">T-Stones</td><td class="nw num" data-label="Grade S">18,000</td><td class="nw num" data-label="Grade A">10,800</td><td class="nw num" data-label="Grade B">6,000</td><td class="nw num" data-label="Grade C">3,000</td></tr><tr><td data-label="Spot" class="nw">#4</td><td data-label="Currency" class="nw">T-Stones</td><td class="nw num" data-label="Grade S">30,000</td><td class="nw num" data-label="Grade A">18,000</td><td class="nw num" data-label="Grade B">10,000</td><td class="nw num" data-label="Grade C">5,000</td></tr><tr><td data-label="Spot" class="nw">#5</td><td data-label="Currency" class="nw">T-Stones</td><td class="nw num" data-label="Grade S">54,000</td><td class="nw num" data-label="Grade A">32,400</td><td class="nw num" data-label="Grade B">18,000</td><td class="nw num" data-label="Grade C">9,000</td></tr><tr><td data-label="Spot" class="nw">#6</td><td data-label="Currency" class="nw">T-Stones</td><td class="nw num" data-label="Grade S">90,000</td><td class="nw num" data-label="Grade A">54,000</td><td class="nw num" data-label="Grade B">30,000</td><td class="nw num" data-label="Grade C">15,000</td></tr><tr><td data-label="Spot" class="nw">#7</td><td data-label="Currency" class="nw">T-Stones</td><td class="nw num" data-label="Grade S">150,000</td><td class="nw num" data-label="Grade A">90,000</td><td class="nw num" data-label="Grade B">50,000</td><td class="nw num" data-label="Grade C">25,000</td></tr><tr><td data-label="Spot" class="nw">#8</td><td data-label="Currency" class="nw">T-Stones</td><td class="nw num" data-label="Grade S">240,000</td><td class="nw num" data-label="Grade A">144,000</td><td class="nw num" data-label="Grade B">80,000</td><td class="nw num" data-label="Grade C">40,000</td></tr><tr><td data-label="Spot" class="nw">#9</td><td data-label="Currency" class="nw">Warp Gems</td><td class="nw num" data-label="Grade S">4,500</td><td class="nw num" data-label="Grade A">2,700</td><td class="nw num" data-label="Grade B">1,500</td><td class="nw num" data-label="Grade C">750</td></tr><tr><td data-label="Spot" class="nw">#10</td><td data-label="Currency" class="nw">Warp Gems</td><td class="nw num" data-label="Grade S">9,000</td><td class="nw num" data-label="Grade A">5,400</td><td class="nw num" data-label="Grade B">3,000</td><td class="nw num" data-label="Grade C">1,500</td></tr></tbody></table></div></section><section id="odds"><h2><a class="hl" href="#odds">#</a>Grade odds<small class="ver" style="font-size:12px;font-weight:400;margin-left:8px">Last changed <a href="patches.html#2026.10.10.7">2026.10.10.7</a></small></h2><p>The recruit window shows 3 candidates, and each candidate's grade is rolled separately <span class="badge b-user" data-grade="원작과 다르게 바꿈(사용자 결정)" title="A value that exists in the original but was set differently by developer decision">Changed from original (developer decision)</span>.</p><div class="tw"><table class="numt "><thead><tr><th class="s">Grade</th><th class="s num">Chance per candidate</th></tr></thead><tbody><tr><td data-label="Grade" class="nw">Grade S</td><td class="nw num" data-label="Chance per candidate">3%</td></tr><tr><td data-label="Grade" class="nw">Grade A</td><td class="nw num" data-label="Chance per candidate">12%</td></tr><tr><td data-label="Grade" class="nw">Grade B</td><td class="nw num" data-label="Chance per candidate">35%</td></tr><tr><td data-label="Grade" class="nw">Grade C</td><td class="nw num" data-label="Chance per candidate">50%</td></tr></tbody></table></div><dl class="kv"><dt>At least 1 Grade S in one window</dt><dd>about 8.7% (= 1 − 0.97^3)</dd><dt>Pity</dt><dd>Every 20th reroll for the same slot guarantees 1 Grade S (if no candidate is S, the first one becomes S)</dd><dt>Grade S names</dt><dd>Grade S candidates first get one of a fixed set of names, never one you already have. Once those are used up, ordinary names are used</dd><dt>Gender, job, looks</dt><dd>Rolled independently of grade</dd></dl></section><section id="reroll"><h2><a class="hl" href="#reroll">#</a>Rerolls<small class="ver" style="font-size:12px;font-weight:400;margin-left:8px">Last changed <a href="patches.html#2026.10.10.7">2026.10.10.7</a></small></h2><p>If you don't like the candidates, “Reroll” gives 3 new ones <span class="badge b-user" data-grade="원작과 다르게 바꿈(사용자 결정)" title="A value that exists in the original but was set differently by developer decision">Changed from original (developer decision)</span>.</p><ul><li>Tries 1–4: T-Stones — 10%·20%·30%·50% of the slot's Grade B base price (min 300, rounded to 100s). Slots 9 and 10 use slot 8's base price.</li><li>From try 5: Warp Gems — starts at 20, rises each time, fixed at 100 from try 13.</li><li>The count resets to 0 <b class="nw">only when you hire</b>. Closing the window or changing islands keeps the same candidates and count.</li><li>There is no auto-reroll — you press it yourself each time.</li></ul><h3>T-Stone rerolls (slot × try)</h3><div class="tw"><table class="numt "><thead><tr><th class="s">Spot</th><th class="s num">#1</th><th class="s num">#2</th><th class="s num">#3</th><th class="s num">#4</th></tr></thead><tbody><tr><td data-label="Spot" class="nw">#1</td><td class="nw num" data-label="#1">300</td><td class="nw num" data-label="#2">300</td><td class="nw num" data-label="#3">300</td><td class="nw num" data-label="#4">500</td></tr><tr><td data-label="Spot" class="nw">#2</td><td class="nw num" data-label="#1">300</td><td class="nw num" data-label="#2">600</td><td class="nw num" data-label="#3">900</td><td class="nw num" data-label="#4">1,500</td></tr><tr><td data-label="Spot" class="nw">#3</td><td class="nw num" data-label="#1">600</td><td class="nw num" data-label="#2">1,200</td><td class="nw num" data-label="#3">1,800</td><td class="nw num" data-label="#4">3,000</td></tr><tr><td data-label="Spot" class="nw">#4</td><td class="nw num" data-label="#1">1,000</td><td class="nw num" data-label="#2">2,000</td><td class="nw num" data-label="#3">3,000</td><td class="nw num" data-label="#4">5,000</td></tr><tr><td data-label="Spot" class="nw">#5</td><td class="nw num" data-label="#1">1,800</td><td class="nw num" data-label="#2">3,600</td><td class="nw num" data-label="#3">5,400</td><td class="nw num" data-label="#4">9,000</td></tr><tr><td data-label="Spot" class="nw">#6</td><td class="nw num" data-label="#1">3,000</td><td class="nw num" data-label="#2">6,000</td><td class="nw num" data-label="#3">9,000</td><td class="nw num" data-label="#4">15,000</td></tr><tr><td data-label="Spot" class="nw">#7</td><td class="nw num" data-label="#1">5,000</td><td class="nw num" data-label="#2">10,000</td><td class="nw num" data-label="#3">15,000</td><td class="nw num" data-label="#4">25,000</td></tr><tr><td data-label="Spot" class="nw">#8</td><td class="nw num" data-label="#1">8,000</td><td class="nw num" data-label="#2">16,000</td><td class="nw num" data-label="#3">24,000</td><td class="nw num" data-label="#4">40,000</td></tr><tr><td data-label="Spot" class="nw">#9</td><td class="nw num" data-label="#1">8,000</td><td class="nw num" data-label="#2">16,000</td><td class="nw num" data-label="#3">24,000</td><td class="nw num" data-label="#4">40,000</td></tr><tr><td data-label="Spot" class="nw">#10</td><td class="nw num" data-label="#1">8,000</td><td class="nw num" data-label="#2">16,000</td><td class="nw num" data-label="#3">24,000</td><td class="nw num" data-label="#4">40,000</td></tr></tbody></table></div><h3>Warp Gem rerolls</h3><div class="tw"><table class="numt "><thead><tr><th class="s">Try</th><th class="s num">Warp Gems</th></tr></thead><tbody><tr><td data-label="Try" class="nw">#5</td><td class="nw num" data-label="Warp Gems">20</td></tr><tr><td data-label="Try" class="nw">#6</td><td class="nw num" data-label="Warp Gems">30</td></tr><tr><td data-label="Try" class="nw">#7</td><td class="nw num" data-label="Warp Gems">40</td></tr><tr><td data-label="Try" class="nw">#8</td><td class="nw num" data-label="Warp Gems">50</td></tr><tr><td data-label="Try" class="nw">#9</td><td class="nw num" data-label="Warp Gems">60</td></tr><tr><td data-label="Try" class="nw">#10</td><td class="nw num" data-label="Warp Gems">70</td></tr><tr><td data-label="Try" class="nw">#11</td><td class="nw num" data-label="Warp Gems">80</td></tr><tr><td data-label="Try" class="nw">#12</td><td class="nw num" data-label="Warp Gems">90</td></tr><tr><td data-label="Try" class="nw">#13</td><td class="nw num" data-label="Warp Gems">100</td></tr><tr><td data-label="Try" class="nw">#14</td><td class="nw num" data-label="Warp Gems">100</td></tr></tbody></table></div></section><section id="grades"><h2><a class="hl" href="#grades">#</a>Stats by grade<small class="ver" style="font-size:12px;font-weight:400;margin-left:8px">Last changed <a href="patches.html#2026.10.10.7">2026.10.10.7</a></small></h2><p>Higher grades have more life and attack and take less damage <span class="badge b-user" data-grade="원작과 다르게 바꿈(사용자 결정)" title="A value that exists in the original but was set differently by developer decision">Changed from original (developer decision)</span>. <b>Grade A = the former NPC clan member (multiplier 1)</b>.</p><div class="tw"><table class="numt "><thead><tr><th class="s">Grade</th><th class="s num">Life</th><th class="s num">Attack</th><th class="s num">Damage taken</th><th class="s num">Bag space</th><th class="s num">Gain per enhance level</th></tr></thead><tbody><tr><td data-label="Grade" class="nw">Grade S</td><td class="nw num" data-label="Life">×1.17</td><td class="nw num" data-label="Attack">×1.13</td><td class="nw num" data-label="Damage taken">×0.95</td><td class="nw num" data-label="Bag space">40</td><td class="nw num" data-label="Gain per enhance level">4%</td></tr><tr><td data-label="Grade" class="nw">Grade A</td><td class="nw num" data-label="Life">×1</td><td class="nw num" data-label="Attack">×1</td><td class="nw num" data-label="Damage taken">×1</td><td class="nw num" data-label="Bag space">30</td><td class="nw num" data-label="Gain per enhance level">3%</td></tr><tr><td data-label="Grade" class="nw">Grade B</td><td class="nw num" data-label="Life">×0.83</td><td class="nw num" data-label="Attack">×0.87</td><td class="nw num" data-label="Damage taken">×1.05</td><td class="nw num" data-label="Bag space">20</td><td class="nw num" data-label="Gain per enhance level">2.5%</td></tr><tr><td data-label="Grade" class="nw">Grade C</td><td class="nw num" data-label="Life">×0.63</td><td class="nw num" data-label="Attack">×0.65</td><td class="nw num" data-label="Damage taken">×1.16</td><td class="nw num" data-label="Bag space">10</td><td class="nw num" data-label="Gain per enhance level">2%</td></tr></tbody></table></div><div class="note n-info">The damage-taken multiplier applies to incoming damage (at least 1 on a hit). Life and attack are further multiplied by the enhancement multiplier (see “Enhancement” below).</div></section><section id="enhance"><h2><a class="hl" href="#enhance">#</a>Enhancement<small class="ver" style="font-size:12px;font-weight:400;margin-left:8px">Last changed <a href="patches.html#2026.10.10.7">2026.10.10.7</a></small></h2><p>At the clan board's “Enhance mercenary” you raise one mercenary one level at a time. Any grade can be enhanced; each level raises life and attack by a grade-dependent rate <span class="badge b-user" data-grade="원작과 다르게 바꿈(사용자 결정)" title="A value that exists in the original but was set differently by developer decision">Changed from original (developer decision)</span>.</p><ul><li>Max +15. From +16, zombie materials will be required later — not open yet.</li><li>Up to +10, a failure keeps the level. At +11 or higher, a failure has a 30% chance to drop one level (never below +10).</li><li>Pity: once consecutive failures reach that level's count, the next enhancement always succeeds. Success resets it to 0; a failure or drop adds +1.</li><li>Enhancement multiplier = 1 + level × gain per level. A knocked-down mercenary can't be enhanced.</li></ul><h3>Success rate and cost per level</h3><div class="tw"><table class="numt "><thead><tr><th class="s">Stage</th><th class="s num">Success rate</th><th class="s num">T-Stones</th><th class="s num">Warp Gems</th><th class="s num">Drop on failure</th><th class="s num">Pity (consecutive fails)</th><th class="s">Cumulative cost (successes only)</th></tr></thead><tbody><tr><td data-label="Stage" class="nw">+0 → +1</td><td class="nw num" data-label="Success rate">95%</td><td class="nw num" data-label="T-Stones">500</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×4</td><td data-label="Cumulative cost (successes only)" class="nw">500</td></tr><tr><td data-label="Stage" class="nw">+1 → +2</td><td class="nw num" data-label="Success rate">90%</td><td class="nw num" data-label="T-Stones">800</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×4</td><td data-label="Cumulative cost (successes only)" class="nw">1,300</td></tr><tr><td data-label="Stage" class="nw">+2 → +3</td><td class="nw num" data-label="Success rate">85%</td><td class="nw num" data-label="T-Stones">1,200</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×4</td><td data-label="Cumulative cost (successes only)" class="nw">2,500</td></tr><tr><td data-label="Stage" class="nw">+3 → +4</td><td class="nw num" data-label="Success rate">80%</td><td class="nw num" data-label="T-Stones">1,800</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×4</td><td data-label="Cumulative cost (successes only)" class="nw">4,300</td></tr><tr><td data-label="Stage" class="nw">+4 → +5</td><td class="nw num" data-label="Success rate">75%</td><td class="nw num" data-label="T-Stones">2,500</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×4</td><td data-label="Cumulative cost (successes only)" class="nw">6,800</td></tr><tr><td data-label="Stage" class="nw">+5 → +6</td><td class="nw num" data-label="Success rate">70%</td><td class="nw num" data-label="T-Stones">3,500</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×6</td><td data-label="Cumulative cost (successes only)" class="nw">10,300</td></tr><tr><td data-label="Stage" class="nw">+6 → +7</td><td class="nw num" data-label="Success rate">65%</td><td class="nw num" data-label="T-Stones">5,000</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×6</td><td data-label="Cumulative cost (successes only)" class="nw">15,300</td></tr><tr><td data-label="Stage" class="nw">+7 → +8</td><td class="nw num" data-label="Success rate">55%</td><td class="nw num" data-label="T-Stones">7,000</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×6</td><td data-label="Cumulative cost (successes only)" class="nw">22,300</td></tr><tr><td data-label="Stage" class="nw">+8 → +9</td><td class="nw num" data-label="Success rate">50%</td><td class="nw num" data-label="T-Stones">9,500</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×6</td><td data-label="Cumulative cost (successes only)" class="nw">31,800</td></tr><tr><td data-label="Stage" class="nw">+9 → +10</td><td class="nw num" data-label="Success rate">45%</td><td class="nw num" data-label="T-Stones">13,000</td><td class="nw num" data-label="Warp Gems">—</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×6</td><td data-label="Cumulative cost (successes only)" class="nw">44,800</td></tr><tr><td data-label="Stage" class="nw">+10 → +11</td><td class="nw num" data-label="Success rate">40%</td><td class="nw num" data-label="T-Stones">17,000</td><td class="nw num" data-label="Warp Gems">10</td><td class="nw num" data-label="Drop on failure">—</td><td class="nw num" data-label="Pity (consecutive fails)">×8</td><td data-label="Cumulative cost (successes only)" class="nw">61,800 + 10 gems</td></tr><tr><td data-label="Stage" class="nw">+11 → +12</td><td class="nw num" data-label="Success rate">35%</td><td class="nw num" data-label="T-Stones">22,000</td><td class="nw num" data-label="Warp Gems">20</td><td class="nw num" data-label="Drop on failure">30%</td><td class="nw num" data-label="Pity (consecutive fails)">×8</td><td data-label="Cumulative cost (successes only)" class="nw">83,800 + 30 gems</td></tr><tr><td data-label="Stage" class="nw">+12 → +13</td><td class="nw num" data-label="Success rate">30%</td><td class="nw num" data-label="T-Stones">28,000</td><td class="nw num" data-label="Warp Gems">30</td><td class="nw num" data-label="Drop on failure">30%</td><td class="nw num" data-label="Pity (consecutive fails)">×8</td><td data-label="Cumulative cost (successes only)" class="nw">111,800 + 60 gems</td></tr><tr><td data-label="Stage" class="nw">+13 → +14</td><td class="nw num" data-label="Success rate">25%</td><td class="nw num" data-label="T-Stones">35,000</td><td class="nw num" data-label="Warp Gems">50</td><td class="nw num" data-label="Drop on failure">30%</td><td class="nw num" data-label="Pity (consecutive fails)">×8</td><td data-label="Cumulative cost (successes only)">146,800 + 110 gems</td></tr><tr><td data-label="Stage" class="nw">+14 → +15</td><td class="nw num" data-label="Success rate">20%</td><td class="nw num" data-label="T-Stones">45,000</td><td class="nw num" data-label="Warp Gems">80</td><td class="nw num" data-label="Drop on failure">30%</td><td class="nw num" data-label="Pity (consecutive fails)">×8</td><td data-label="Cumulative cost (successes only)">191,800 + 190 gems</td></tr></tbody></table></div><h3>Grade × enhancement multiplier (life / attack)</h3><div class="tw"><table class="cardt "><thead><tr><th class="s">Grade</th><th class="s">+0</th><th class="s">+5</th><th class="s">+10</th><th class="s">+15</th></tr></thead><tbody><tr><td data-label="Grade" class="nw">Grade S</td><td data-label="+0" class="nw">×1.17 / ×1.13</td><td data-label="+5" class="nw">×1.4 / ×1.36</td><td data-label="+10" class="nw">×1.64 / ×1.58</td><td data-label="+15" class="nw">×1.87 / ×1.81</td></tr><tr><td data-label="Grade" class="nw">Grade A</td><td data-label="+0" class="nw">×1 / ×1</td><td data-label="+5" class="nw">×1.15 / ×1.15</td><td data-label="+10" class="nw">×1.3 / ×1.3</td><td data-label="+15" class="nw">×1.45 / ×1.45</td></tr><tr><td data-label="Grade" class="nw">Grade B</td><td data-label="+0" class="nw">×0.83 / ×0.87</td><td data-label="+5" class="nw">×0.93 / ×0.98</td><td data-label="+10" class="nw">×1.04 / ×1.09</td><td data-label="+15" class="nw">×1.14 / ×1.2</td></tr><tr><td data-label="Grade" class="nw">Grade C</td><td data-label="+0" class="nw">×0.63 / ×0.65</td><td data-label="+5" class="nw">×0.69 / ×0.72</td><td data-label="+10" class="nw">×0.76 / ×0.78</td><td data-label="+15" class="nw">×0.82 / ×0.85</td></tr></tbody></table></div></section><section id="gear"><h2><a class="hl" href="#gear">#</a>Gear &amp; bag<small class="ver" style="font-size:12px;font-weight:400;margin-left:8px">Last changed <a href="patches.html#2026.10.10.7">2026.10.10.7</a></small></h2><p>A hired mercenary arrives <b class="nw">Bare-handed</b>. The owner hands over weapons and armor in the clan board's “Mercenary weapons” window <span class="badge b-user" data-grade="원작과 다르게 바꿈(사용자 결정)" title="A value that exists in the original but was set differently by developer decision">Changed from original (developer decision)</span>.</p><dl class="kv"><dt>Weapon</dt><dd>Give a weapon from the owner's bag. Weapon performance and the attack-rating curve use the original data</dd><dt>Armor</dt><dd>Equip original armor in the head, body, gloves and shoes slots. The total defense reduces damage taken through the same attack-rating − defense curve as players (armor at 0 durability doesn't count). Same rule in single and multiplayer</dd><dt>Bag</dt><dd>Same window as the pet bag. Space by grade (sum of item sizes): C 10 · B 20 · A 30 · S 40</dd><dt>Rest</dt><dd>Rests while keeping equipped gear and bag contents</dd><dt>Unstable islands</dt><dd>When you leave an unstable island, unstable items in a mercenary's weapon, armor and bag vanish just like in your own bag</dd></dl></section><section id="down"><h2><a class="hl" href="#down">#</a>Knockdown &amp; revival<small class="ver" style="font-size:12px;font-weight:400;margin-left:8px">Last changed <a href="patches.html#2026.10.10.7">2026.10.10.7</a></small></h2><p>How a knocked-down mercenary gets back up depends on the island <span class="badge b-user" data-grade="원작과 다르게 바꿈(사용자 결정)" title="A value that exists in the original but was set differently by developer decision">Changed from original (developer decision)</span>. Either way there is no permanent death.</p><h3>Normal islands (Tamed Island, etc.) — free</h3><ul><li>Gets up by itself after 60s with 50% life.</li><li>Owner rescue: 15s.</li><li>After 15s down, another mercenary goes to rescue it (CPR 1.5s).</li></ul><h3>Unstable islands — T-Stone revival</h3><p>On unstable islands a mercenary doesn't get up by itself, through another mercenary's rescue, or through the owner's free rescue. The owner touches it and pays T-Stones by grade to revive it on the spot. If not revived, it gets back up when you leave the island.</p><div class="tw"><table class="numt "><thead><tr><th class="s">Grade</th><th class="s num">Revive cost (T-Stones)</th></tr></thead><tbody><tr><td data-label="Grade" class="nw">Grade S</td><td class="nw num" data-label="Revive cost (T-Stones)">500</td></tr><tr><td data-label="Grade" class="nw">Grade A</td><td class="nw num" data-label="Revive cost (T-Stones)">300</td></tr><tr><td data-label="Grade" class="nw">Grade B</td><td class="nw num" data-label="Revive cost (T-Stones)">200</td></tr><tr><td data-label="Grade" class="nw">Grade C</td><td class="nw num" data-label="Revive cost (T-Stones)">100</td></tr></tbody></table></div></section><section id="manage"><h2><a class="hl" href="#manage">#</a>Rest &amp; dismissal<small class="ver" style="font-size:12px;font-weight:400;margin-left:8px">Last changed <a href="patches.html#2026.10.10.7">2026.10.10.7</a></small></h2><p>Mercenaries are managed at the clan board <span class="badge b-user" data-grade="원작과 다르게 바꿈(사용자 결정)" title="A value that exists in the original but was set differently by developer decision">Changed from original (developer decision)</span>.</p><dl class="kv"><dt>Rest</dt><dd>Sends a mercenary to rest. It still counts toward your hired total. “Call” brings all resting mercenaries back for free</dd><dt>Dismiss</dt><dd>Dismiss one at a time. <b class="nw">No refund.</b> Given weapons, equipped armor and the mercenary's bag contents return to the owner's bag (nothing is dropped even if the bag is full)</dd><dt>Former clan members</dt><dd>The auto-recruited clan members from before the mercenary system were all disbanded once, and weapons given to them returned to the bag</dd></dl></section></main></div>
+<footer class="foot">Generated 2026-10-10 23:54 · automatically generated from extracted original data and the released game code · unofficial fan restoration project · † unofficial English name</footer>
+<script src="search.js"></script>
+<script>(function(){
+"use strict";
+// 밝게/어둡게
+var root=document.documentElement;
+try{var t=localStorage.getItem('wiki-theme');if(t)root.setAttribute('data-theme',t);}catch(e){}
+document.getElementById('theme').onclick=function(){
+  var cur=root.getAttribute('data-theme');
+  var dark=cur?cur==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  root.setAttribute('data-theme',dark?'light':'dark');
+  try{localStorage.setItem('wiki-theme',root.getAttribute('data-theme'));}catch(e){}
+};
+// 좁은 화면에서는 목차를 접는다
+if(matchMedia('(max-width:860px)').matches){var d=document.querySelector('aside.toc details');if(d)d.open=false;}
+// 전체 검색
+var IDX=window.WIKI_INDEX||[],q=document.getElementById('q'),qr=document.getElementById('qr'),sel=-1;
+function norm(s){return String(s).toLowerCase().replace(/\s+/g,'');}
+var NIDX=IDX.map(function(r){return norm(r[0]);});
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function run(){
+  var v=norm(q.value);sel=-1;
+  if(!v){qr.hidden=true;return;}
+  var hit=[];
+  for(var i=0;i<IDX.length&&hit.length<200;i++){var p=NIDX[i].indexOf(v);if(p>=0)hit.push([p===0?0:1,NIDX[i].length,i]);}
+  hit.sort(function(a,b){return a[0]-b[0]||a[1]-b[1];});
+  qr.innerHTML=hit.slice(0,30).map(function(h){var r=IDX[h[2]];return '<li><a href="../'+esc(r[1])+'">'+esc(r[0])+(r[2]?'<span>'+esc(r[2])+'</span>':'')+'</a></li>';}).join('')||'<li><a>No matches</a></li>';
+  qr.hidden=false;
+}
+q.addEventListener('input',run);
+q.addEventListener('keydown',function(e){
+  var as=qr.querySelectorAll('a[href]');if(!as.length)return;
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();sel=(sel+(e.key==='ArrowDown'?1:-1)+as.length)%as.length;
+    for(var i=0;i<as.length;i++)as[i].className=i===sel?'on':'';as[sel].scrollIntoView({block:'nearest'});}
+  else if(e.key==='Enter'){location.href=as[sel<0?0:sel].getAttribute('href');qr.hidden=true;}
+  else if(e.key==='Escape'){qr.hidden=true;}
+});
+document.addEventListener('click',function(e){if(!e.target.closest('.gsearch'))qr.hidden=true;});
+// 표 거르기
+Array.prototype.forEach.call(document.querySelectorAll('input.tf'),function(inp){
+  var tw=inp.nextElementSibling;if(!tw&&!inp.hasAttribute('data-filter-root'))return;
+  inp.addEventListener('input',function(){var v=norm(inp.value),group=inp.getAttribute('data-filter-group');
+    var inputs=group?document.querySelectorAll('input.tf[data-filter-group="'+group+'"]'):[inp];
+    Array.prototype.forEach.call(inputs,function(other){
+      other.value=inp.value;if(other.hasAttribute('data-filter-root'))return;
+      var rows=other.nextElementSibling.querySelectorAll('tbody tr'),shown=0;
+      for(var i=0;i<rows.length;i++){var show=!v||norm(rows[i].textContent).indexOf(v)>=0;
+        rows[i].style.display=show?'':'none';if(show)shown++;}
+      if(group){var section=other.closest('section');if(section)section.hidden=shown===0;}
+    });});
+});
+// 표 정렬
+function key(td){var s=td?td.textContent.trim():'';var n=parseFloat(s.replace(/,/g,''));return isNaN(n)?s:n;}
+Array.prototype.forEach.call(document.querySelectorAll('table'),function(tb){
+  var ths=tb.querySelectorAll('thead th');
+  Array.prototype.forEach.call(ths,function(th,ci){th.addEventListener('click',function(){
+    var dir=th.getAttribute('data-dir')==='asc'?'desc':'asc';
+    Array.prototype.forEach.call(ths,function(x){x.removeAttribute('data-dir');});th.setAttribute('data-dir',dir);
+    var body=tb.tBodies[0],rs=Array.prototype.slice.call(body.rows);
+    rs.sort(function(a,b){var x=key(a.cells[ci]),y=key(b.cells[ci]);
+      var c=(typeof x==='number'&&typeof y==='number')?x-y:String(x).localeCompare(String(y),'en');return dir==='asc'?c:-c;});
+    rs.forEach(function(r){body.appendChild(r);});
+  });});
+});
+})();
+</script>
+</body>
+</html>
